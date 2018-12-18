@@ -20,9 +20,9 @@ public class TestApple {
         Apple apple = new Apple();
         apple.setColor("red");
         apple.setWeigth(10);
-        AppleSimpleFormatter formatter = new AppleSimpleFormatter();
+//        AppleSimpleFormatter formatter = new AppleSimpleFormatter();
         List<Apple> inventory = new ArrayList<>();
         inventory.add(apple);
-        prettyPrintApple(inventory,formatter);
+        prettyPrintApple(inventory, apple1 -> "A apple of " + apple1.getWeigth() + " g");
     }
 }
