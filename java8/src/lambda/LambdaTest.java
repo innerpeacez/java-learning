@@ -2,7 +2,9 @@ package lambda;
 
 import java.nio.file.DirectoryStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
@@ -19,12 +21,19 @@ public class LambdaTest {
     public static void main(String[] args) {
 //        process(() -> System.out.println("Hello World Lambda"));
 
-        Predicate<String> filter = (String s) -> !s.isEmpty();
-        List strings = new ArrayList<>();
-        strings.add("zhw");
-        strings.add("");
-        List list = filter(strings, filter);
-        System.out.println(list);
+//        Predicate<String> filter = (String s) -> !s.isEmpty();
+//        List strings = new ArrayList<>();
+//        strings.add("zhw");
+//        strings.add("");
+//        List list = filter(strings, filter);
+//        System.out.println(list);
+
+        Consumer<Integer> integerConsumer = (Integer t) -> System.out.println(t);
+        forEach(Arrays.asList(1, 2, 3, 4, 5), integerConsumer);
+    }
+
+    public static <T> void forEach(List<T> t, Consumer<T> c) {
+        t.forEach(i -> c.accept(i));
     }
 
     public static <T> List<T> filter(List<T> list, Predicate p) {
