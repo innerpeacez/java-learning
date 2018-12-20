@@ -1,7 +1,11 @@
 package lambda;
 
+
+import argspass.Apple;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -27,12 +31,23 @@ public class LambdaTest {
 //        strings.add("");
 //        List list = filter(strings, filter);
 //        System.out.println(list);
+//        filter(Arrays.asList("innerpeacez", ""), (String s) -> !s.isEmpty());
 
 //        Consumer<Integer> integerConsumer = (Integer t) -> System.out.println(t);
 //        forEach(Arrays.asList(1, 2, 3, 4, 5), integerConsumer);
 
-        List<Integer> map = map(Arrays.asList("zhai", "hong", "wei"), (String::length));
-        System.out.println(map);
+        // 参数类型可以根据目标类型来获取
+//        Function<String, Integer> function = s -> s.length();
+
+
+//        List<Integer> map = map(Arrays.asList("zhai", "hong", "wei"), (String::length));
+
+        Arrays.asList("zhw", "").sort(Comparator.comparing(String::length));
+
+        Apple apple = new Apple();
+        apple.setWeigth(10);
+//
+//        System.out.println(map);
     }
 
     public static <T> void forEach(List<T> t, Consumer<T> c) {
@@ -45,7 +60,7 @@ public class LambdaTest {
         return result;
     }
 
-    public static <T> List<T> filter(List<T> list, Predicate p) {
+    public static <T> List<T> filter(List<T> list, Predicate<T> p) {
         List results = new ArrayList();
         list.forEach((T) -> {
             if (p.test(T)) {
