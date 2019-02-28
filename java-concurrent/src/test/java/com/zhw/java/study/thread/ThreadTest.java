@@ -14,10 +14,16 @@ public class ThreadTest {
 
     @Test
     public void testRunnable() {
-        System.out.println("主线程开始:" + Thread.currentThread().getName());
-        for (int i = 0; i < 10; i++) {
-            new Thread(() -> System.out.println("my first thread run "+Thread.currentThread().getName())," thread" + i).start();
-        }
+        Thread runnable = new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("my first thread run");
+        });
+        System.out.println("主线程开始");
+        runnable.start();
         System.out.println("主线程结束");
     }
 }
