@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -121,5 +122,21 @@ public class StreamTest {
                 .filter(num -> num % 3 == 0)
                 .findFirst()
                 .ifPresent(System.out::println);
+    }
+
+    @Test
+    public void testReduce() {
+        List<Integer> integers = Arrays.asList(4, 5, 3, 9);
+        Optional<Integer> reduce1 = integers.stream()
+                .reduce(Integer::sum);
+        System.out.println(reduce1.get());
+    }
+
+    @Test
+    public void testReduceMax() {
+        List<Integer> integers = Arrays.asList(4, 5, 3, 9);
+        Optional<Integer> reduce1 = integers.stream()
+                .reduce(Integer::max);
+        System.out.println(reduce1.get());
     }
 }
