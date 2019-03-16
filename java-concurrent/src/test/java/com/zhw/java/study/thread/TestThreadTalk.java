@@ -52,11 +52,6 @@ public class TestThreadTalk {
 //        }).start();
 
         new Thread(()->{
-            try {
-                Thread.sleep(1000 *3);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             System.out.println("notify");
             myWaitNotify.doNotify();
         }).start();

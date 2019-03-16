@@ -8,7 +8,7 @@ public class MyWaitNotify {
 
     public void doWait() {
         synchronized (myMonitorObject) {
-            if (!wasSignalled) {
+            while (!wasSignalled) {
                 try {
                     myMonitorObject.wait();
                 } catch (InterruptedException e) {
@@ -22,7 +22,7 @@ public class MyWaitNotify {
     public void doNotify() {
         synchronized (myMonitorObject) {
             wasSignalled = true;
-            myMonitorObject.notify();
+            myMonitorObject.notifyAll();
         }
     }
 
