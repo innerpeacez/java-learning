@@ -1,6 +1,6 @@
 package com.zhw.java.study.lambda;
 
-import com.zhw.java.study.pojo.Apple;
+import com.zhw.java.study.pojo.apple.Apple;
 import org.junit.Test;
 
 import java.util.Arrays;

@@ -139,4 +139,12 @@ public class StreamTest {
                 .reduce(Integer::max);
         System.out.println(reduce1.get());
     }
+
+    @Test
+    public void doubleNumListTest() {
+        List<Integer> collect = Arrays.asList(1, 2, 3, 4, 5).stream()
+                .map(num -> num * num)
+                .collect(Collectors.toList());
+        System.out.println(collect);
+    }
 }

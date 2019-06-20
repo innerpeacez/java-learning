@@ -1,4 +1,4 @@
-package com.zhw.java.study.pojo;
+package com.zhw.java.study.pojo.apple;
 
 import lombok.*;
 
