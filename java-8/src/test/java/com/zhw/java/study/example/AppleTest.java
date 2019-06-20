@@ -4,6 +4,7 @@ import com.zhw.java.study.pojo.apple.*;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AppleTest {
@@ -73,5 +74,19 @@ public class AppleTest {
             }
         });
         System.out.println(apples);
+    }
+
+    @Test
+    public void testLambda() {
+        List<Apple> apples = appleFilter.filterColor(this.apples, apple -> "yellow".equals(apple.getColor()));
+        System.out.println(apples);
+    }
+
+    @Test
+    public void testAbstract() {
+        List<Integer> nums = Arrays.asList(10, 20, 2, 3, 4, 54, 6, 234);
+        List<Integer> lessTen = new Filter<Integer>().filter(nums, i -> i < 10);
+        System.out.println(lessTen);
+
     }
 }
