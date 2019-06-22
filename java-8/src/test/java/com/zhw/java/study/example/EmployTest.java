@@ -42,6 +42,17 @@ public class EmployTest {
                 .map(Student::getAge)
                 .mapToInt(age -> age)
                 .sum();
-        System.out.println("总年龄 =" + ages);
+        System.out.println("总年龄 = " + ages);
+    }
+
+    /**
+     * 找出所有喜喜欢篮球的同学
+     */
+    @Test
+    public void streamHobby() {
+        List<Student> basketballPeople = students.stream()
+                .filter(student -> student.getHobby().equals("basketball"))
+                .collect(Collectors.toList());
+        System.out.println(basketballPeople);
     }
 }
