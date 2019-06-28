@@ -5,6 +5,7 @@ import lombok.NonNull;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,5 +55,38 @@ public class EmployTest {
                 .filter(student -> student.getHobby().equals("basketball"))
                 .collect(Collectors.toList());
         System.out.println(basketballPeople);
+    }
+
+    /**
+     * 查找年龄大于15岁的学生
+     */
+    @Test
+    public void streamFilter() {
+        List<Student> upThan15 = students.stream()
+                .filter(student -> student.getAge() > 15)
+                .collect(Collectors.toList());
+        System.out.println(upThan15);
+    }
+
+    /**
+     * 根据学生年龄正序
+     */
+    @Test
+    public void streamSort() {
+        List<Student> collect = students.stream()
+                .sorted(Comparator.comparing(Student::getAge))
+                .collect(Collectors.toList());
+        System.out.println(collect);
+    }
+
+    /**
+     * 根据学生年龄倒序
+     */
+    @Test
+    public void streamSortDesc() {
+        List<Student> collect = students.stream()
+                .sorted(Comparator.comparing(Student::getAge).reversed())
+                .collect(Collectors.toList());
+        System.out.println(collect);
     }
 }
