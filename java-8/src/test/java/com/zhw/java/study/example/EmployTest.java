@@ -16,6 +16,7 @@ public class EmployTest {
             new Student("lisi", 11, "male", "volleyball"),
             new Student("wangwu", 12, "male", "volleyball"),
             new Student("zhaoliu", 13, "male", "basketball"),
+            new Student("zhaoliu", 13, "male", "basketball"),
             new Student("xiaoming", 14, "male", "basketball"),
             new Student("xiaohua", 15, "male", "violin"),
             new Student("xiaoli", 16, "female", "violin"),
@@ -88,5 +89,43 @@ public class EmployTest {
                 .sorted(Comparator.comparing(Student::getAge).reversed())
                 .collect(Collectors.toList());
         System.out.println(collect);
+    }
+
+    /**
+     * 找出年龄最大的三个人
+     */
+    @Test
+    public void streamLimit() {
+        List<Student> limit3students = students.stream()
+                .sorted(Comparator.comparing(Student::getAge).reversed())
+                .limit(3)
+                .collect(Collectors.toList());
+        System.out.println(limit3students);
+    }
+
+    /**
+     * 找出三个最大的男生
+     */
+    @Test
+    public void streamFilterAndLimit() {
+        List<Student> maleMax3 = students.stream()
+                .sorted(Comparator.comparing(Student::getAge).reversed())
+                .filter(student -> student.getSex().equals("male"))
+                .limit(3)
+                .collect(Collectors.toList());
+        System.out.println(maleMax3);
+    }
+
+    /**
+     * 找出所有的男同学并去重
+     */
+    @Test
+    public void streamDistinct() {
+        List<Student> maleMax3 = students.stream()
+                .sorted(Comparator.comparing(Student::getAge).reversed())
+                .filter(student -> student.getSex().equals("male"))
+                .distinct()
+                .collect(Collectors.toList());
+        System.out.println(maleMax3);
     }
 }
