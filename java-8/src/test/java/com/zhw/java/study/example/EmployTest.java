@@ -122,10 +122,25 @@ public class EmployTest {
     @Test
     public void streamDistinct() {
         List<Student> maleMax3 = students.stream()
-                .sorted(Comparator.comparing(Student::getAge).reversed())
                 .filter(student -> student.getSex().equals("male"))
                 .distinct()
                 .collect(Collectors.toList());
         System.out.println(maleMax3);
+    }
+
+    /**
+     * 找出男同学和女同学的数量
+     */
+    @Test
+    public void streamCount() {
+        long countMale = students.stream()
+                .filter(student -> "male".equals(student.getSex()))
+                .distinct()
+                .count();
+        long countFemale = students.stream()
+                .filter(student -> "female".equals(student.getSex()))
+                .distinct()
+                .count();
+        System.out.printf("male count : %d , female count : %d", countMale, countFemale);
     }
 }
