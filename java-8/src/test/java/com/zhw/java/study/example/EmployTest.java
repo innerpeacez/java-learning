@@ -143,4 +143,15 @@ public class EmployTest {
                 .count();
         System.out.printf("male count : %d , female count : %d", countMale, countFemale);
     }
+
+    /**
+     * 跳过前三个人
+     */
+    @Test
+    public void streamSkip() {
+        List<Student> minAgeStudent = students.stream()
+                .skip(3)
+                .collect(Collectors.toList());
+        System.out.println(minAgeStudent);
+    }
 }
