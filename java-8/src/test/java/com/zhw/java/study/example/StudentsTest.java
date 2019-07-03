@@ -7,9 +7,10 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
-public class EmployTest {
+public class StudentsTest {
 
     static volatile List<Student> students = Arrays.asList(
             new Student("zhangsan", 10, "male", "basketball"),
@@ -153,5 +154,24 @@ public class EmployTest {
                 .skip(3)
                 .collect(Collectors.toList());
         System.out.println(minAgeStudent);
+    }
+
+    /**
+     * reduce 计算年龄总和
+     */
+    @Test
+    public void testReduce() {
+        OptionalInt sumAge = students.parallelStream()
+                .mapToInt(Student::getAge)
+                .reduce(Integer::sum);
+        System.out.printf("sumAge: %d", sumAge.orElse(0));
+    }
+
+    @Test
+    public void testReduceMax() {
+        OptionalInt maxAge = students.stream()
+                .mapToInt(Student::getAge)
+                .reduce(Integer::max);
+        System.out.printf("max age = %d", maxAge.orElse(0));
     }
 }
