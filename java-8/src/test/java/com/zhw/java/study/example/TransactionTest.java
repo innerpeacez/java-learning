@@ -47,6 +47,11 @@ public class TransactionTest {
                 .distinct()
                 .collect(Collectors.toList());
         System.out.println(differentCity);
+
+        Set<String> differentCity2 = transactions.parallelStream()
+                .map(transaction -> transaction.getTrader().getCity())
+                .collect(Collectors.toSet());
+        System.out.println(differentCity2);
     }
 
     /**
@@ -75,6 +80,14 @@ public class TransactionTest {
                 .sorted()
                 .collect(Collectors.toList());
         System.out.println(traders);
+
+        String nameStr = transactions.parallelStream()
+                .map(Transaction::getTrader)
+                .map(Trader::getName)
+                .distinct()
+                .sorted()
+                .collect(Collectors.joining());
+        System.out.println(nameStr);
     }
 
     /**
@@ -99,6 +112,12 @@ public class TransactionTest {
                 .mapToInt(Transaction::getValue)
                 .sum();
         System.out.println(cambridgeSum);
+
+
+        transactions.parallelStream()
+                .filter(transaction -> transaction.getTrader().getCity().equals("Cambridge"))
+                .mapToInt(Transaction::getValue)
+                .forEach(System.out::println);
     }
 
     /**
@@ -110,6 +129,11 @@ public class TransactionTest {
                 .mapToInt(Transaction::getValue)
                 .max();
         System.out.println(max.orElse(0));
+
+        Optional<Integer> max2 = transactions.parallelStream()
+                .map(Transaction::getValue)
+                .reduce(Integer::max);
+        System.out.println(max2);
     }
 
     /**
