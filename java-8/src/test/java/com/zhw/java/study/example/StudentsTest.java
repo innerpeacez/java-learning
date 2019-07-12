@@ -4,10 +4,7 @@ import com.zhw.java.study.pojo.student.Student;
 import lombok.NonNull;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.OptionalInt;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class StudentsTest {
@@ -17,6 +14,7 @@ public class StudentsTest {
             new Student("lisi", 11, "male", "volleyball"),
             new Student("wangwu", 12, "male", "volleyball"),
             new Student("zhaoliu", 13, "male", "basketball"),
+            new Student("xiaoqi", 13, "female", "volleyball"),
             new Student("zhaoliu", 13, "male", "basketball"),
             new Student("xiaoming", 14, "male", "basketball"),
             new Student("xiaohua", 15, "male", "violin"),
@@ -167,11 +165,74 @@ public class StudentsTest {
         System.out.printf("sumAge: %d", sumAge.orElse(0));
     }
 
+    /**
+     * reduce 找出最大的年龄
+     */
     @Test
     public void testReduceMax() {
         OptionalInt maxAge = students.stream()
                 .mapToInt(Student::getAge)
                 .reduce(Integer::max);
         System.out.printf("max age = %d", maxAge.orElse(0));
+    }
+
+    /**
+     * 根据性别将学生分组
+     */
+    @Test
+    public void groupBySex() {
+        Map<@NonNull String, List<Student>> groupBySex = students.stream()
+                .distinct()
+                .collect(Collectors.groupingBy(Student::getSex));
+        System.out.println(groupBySex);
+    }
+
+    /**
+     * 根据年龄将学生分组
+     */
+    @Test
+    public void groupByAge() {
+        final Map<String, List<Student>> groupByAge = students.parallelStream()
+                .distinct()
+                .collect(Collectors.groupingBy(student -> {
+                    if (student.getAge() < 15) return "less15";
+                    else return "more15";
+                }));
+        System.out.println(groupByAge);
+    }
+
+    /**
+     * 根据性别和年龄分组
+     */
+    @Test
+    public void groupByAgeAndSex() {
+        final Map<String, Map<@NonNull String, List<Student>>> groupByAgeAndSex = students.parallelStream()
+                .distinct()
+                .collect(Collectors.groupingBy(student -> {
+                    if (student.getAge() < 15) return "less15";
+                    else return "more15";
+                }, Collectors.groupingBy(Student::getSex)));
+        System.out.println(groupByAgeAndSex);
+    }
+
+    /**
+     * groupBy 操作的第二个参数可以是其他的 Collector
+     */
+    @Test
+    public void findCountBySex() {
+        final Map<@NonNull String, Long> countBySex = students.parallelStream()
+                .distinct()
+                .collect(Collectors.groupingBy(Student::getSex, Collectors.counting()));
+        System.out.println(countBySex);
+    }
+
+    @Test
+    public void groupAndToHashMap() {
+        final Map<String, HashSet<@NonNull String>> collect = students.parallelStream()
+                .distinct()
+                .collect(Collectors.groupingBy(student -> {
+                    if (student.getAge() < 15) return "less15";
+                    else return "more15";
+                }, Collectors.mapping(Student::getSex, Collectors.toCollection(HashSet::new))));
     }
 }
