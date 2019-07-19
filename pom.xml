@@ -7,6 +7,7 @@
   <groupId>com.zhw.java.study</groupId>
   <artifactId>java-learning</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
   <name>java-concurrent</name>
 
@@ -14,6 +15,7 @@
     <module>java-8</module>
     <module>java-concurrent</module>
     <module>java-base</module>
+      <module>java-common</module>
   </modules>
 
   <properties>
