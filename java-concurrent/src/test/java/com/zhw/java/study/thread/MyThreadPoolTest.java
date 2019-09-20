@@ -3,9 +3,7 @@ package com.zhw.java.study.thread;
 import com.zhw.java.study.pool.MyThreadPool;
 import org.junit.Test;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.*;
 
 public class MyThreadPoolTest {
     @Test
@@ -19,6 +17,26 @@ public class MyThreadPoolTest {
                 System.out.println("hello");
                 countDownLatch.countDown();
                 System.out.println(Thread.currentThread());
+            });
+            threadCount++;
+        }
+        countDownLatch.await();
+    }
+
+
+    @Test
+    public void testExecutors() throws InterruptedException {
+
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10, 10, 0L,
+                TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
+
+        CountDownLatch countDownLatch = new CountDownLatch(10000);
+        int threadCount = 0;
+        while (threadCount < 10000) {
+            int finalThreadCount = threadCount;
+            threadPoolExecutor.execute(() -> {
+                countDownLatch.countDown();
+                System.out.printf("order: %s, threadName: %s \n", finalThreadCount, Thread.currentThread().getName());
             });
             threadCount++;
         }
