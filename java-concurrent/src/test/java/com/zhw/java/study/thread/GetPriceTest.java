@@ -38,15 +38,9 @@ public class GetPriceTest {
         S s3 = new S(3, "S3");
 
         ArrayList<FutureTask> tasks = new ArrayList<>();
-        tasks.add(new FutureTask(() -> {
-            return s1.toString();
-        }));
-        tasks.add(new FutureTask(() -> {
-            return s2.toString();
-        }));
-        tasks.add(new FutureTask(() -> {
-            return s3.toString();
-        }));
+        tasks.add(new FutureTask(() -> s1.toString()));
+        tasks.add(new FutureTask(() -> s2.toString()));
+        tasks.add(new FutureTask(() -> s3.toString()));
 
         tasks.parallelStream().forEach(ft -> {
             scheduledThreadPoolExecutor.execute(ft);
