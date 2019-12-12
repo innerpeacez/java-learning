@@ -16,6 +16,7 @@
         <module>java-concurrent</module>
         <module>java-base</module>
         <module>java-common</module>
+        <module>java-jvm</module>
     </modules>
 
     <properties>

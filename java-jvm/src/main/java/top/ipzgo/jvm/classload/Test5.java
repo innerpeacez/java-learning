@@ -4,15 +4,32 @@ import java.util.Random;
 
 public class Test5 {
     public static void main(String[] args) {
-        System.out.println(Child5.b);
+        System.out.println(Z.z);
     }
 }
 
 interface Parent5 {
-    int a = new Random().nextInt(1);
+
+    Object object = new Object() {
+        {
+            System.out.println("parent.");
+        }
+    };
 }
 
 interface Child5 extends Parent5 {
-    int b = 6;
+
+    int c = new Random().nextInt();
+
+    Object object = new Object() {
+        {
+            System.out.println("child.");
+        }
+    };
+}
+
+class Z implements Child5 {
+
+    static int z = 5;
 }
 
