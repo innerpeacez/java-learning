@@ -17,6 +17,7 @@
         <module>java-base</module>
         <module>java-common</module>
         <module>java-jvm</module>
+        <module>java-9</module>
     </modules>
 
     <properties>
