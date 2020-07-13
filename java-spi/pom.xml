@@ -5,13 +5,24 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zhw.java.study</groupId>
-    <artifactId>java-concurrent</artifactId>
+    <artifactId>java-spi</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
-    <name>java-concurrent</name>
+    <modules>
+        <module>spi-ioc-base</module>
+        <module>singleton-ioc-core</module>
+        <module>spi-test</module>
+    </modules>
+
+    <name>java-spi</name>
+    <!-- FIXME change it to the project's website -->
+    <url>http://www.example.com</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -21,13 +32,7 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <artifactId>java-common</artifactId>
-            <groupId>com.zhw.java.study</groupId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
     </dependencies>
-
     <build>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
@@ -72,15 +77,5 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
 </project>

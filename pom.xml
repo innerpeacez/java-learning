@@ -18,6 +18,8 @@
         <module>java-common</module>
         <module>java-jvm</module>
         <module>java-9</module>
+        <module>java-spi</module>
+        <module>ioc-core</module>
     </modules>
 
     <properties>
