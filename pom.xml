@@ -13,20 +13,19 @@
 
     <modules>
         <module>java-8</module>
-        <module>java-concurrent</module>
+        <module>java-9</module>
+        <module>java-agent</module>
         <module>java-base</module>
         <module>java-common</module>
+        <module>java-concurrent</module>
         <module>java-jvm</module>
-        <module>java-9</module>
         <module>java-spi</module>
-        <module>ioc-core</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
         <java.common.version>1.0-SNAPSHOT</java.common.version>
+        <compiler.version>1.8</compiler.version>
         <junit.version>4.11</junit.version>
     </properties>
 
@@ -54,4 +53,26 @@
         </dependencies>
     </dependencyManagement>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <configuration>
+                        <source>${compiler.version}</source>
+                        <target>${compiler.version}</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>
